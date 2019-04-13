@@ -1,0 +1,105 @@
+var a;
+undefined
+a = 10;
+10
+a = "Hello"
+"Hello"
+a = {};
+{}
+function add(a,b) {return a+b;}
+undefined
+add(10,20)
+30
+add(10)
+NaN
+add(10,20,40)
+30
+var person = {"firstname":"Manju","lastname":"muni"};
+undefined
+person
+{firstname: "Manju", lastname: "muni"}
+person.firstname
+"Manju"
+person.age = 10;
+10
+person
+
+Application complexity
+	- code base gets on increasing
+	- if 10 different team works - complexity increasses
+	
+
+With all this problems why do we need JavaScript ?
+Ans: Because Web Browsers supports only JavaScript
+
+you need to send code that to be run on browser then it should only be the javascript	
+
+soluton is: use TypeScript language to develop and transpile (compile) it into javascript and then browser will run the javascript.
+but we can technically transpile typescript code on browser itself but it is inefficient.
+
+same thing happens to Node.js also - nodejs runtime can only understand javascript 	it doesn't understand typescript.
+so you write application using typescript and run it thru the typescript compiler and you get javascript and you have javascript excuted in nodejs environment
+
+typescript = javascript + type
+
+there is concept of typing in TypeScript - this helps in type checking at compile time.
+
+problem here is javascript is evolving continusly - let keyword and arrow function etc... 
+the problem is now since new feature added to javascript, we cant confidently provide those new feature because on latest version web browser it will work, 
+but what about client who are still using old web browser, your code will break.
+
+Now for this problem - TypeScript helps lot. you can still use latest features and converts the code into native javascript which is supported in old version of web browsers.
+
+typescript consist of old javascript, which deployed of browser called Ecma Standard 5 (ES 5).
+typescript also contains new feature of ES6 and ES7
+so ultimatley typescript will take care of conversion.
+
+So, TypeScript
+	- Makes building these complex apps more manageable
+	- framework like Angular 2 (onwords) is using typescript. Even ReactJS community also uses.
+
+	
+Setting up TypeScript:
+----------------------
+
+editor of your choice - visual studio code is fine
+NodeJS is required - 
+	1. to transpile TypeScript code into JavaScript code. 
+	2. To run the javascript which is converted - so nodeJS does two things for us.
+To install the TypeScript Compiler - Typescript is like node module (or node package).  npm cmd to install typescript compiler. cmd is npm install <package-name>
+	
+node -v
+
+npm -v
+npm is package manager for node. This comes with node installation.  
+
+npm install typescript 
+this will install the typescript in the current working directory
+but if you need it globally avialable use -g
+
+npm install typescript -g
+
+cmd output: after running npm install typescript
+-----------
+C:\Users\manjunath
+`-- typescript@3.4.3
+
+npm WARN enoent ENOENT: no such file or directory, open 'C:\Users\manjunath\package.json'
+npm WARN manjunath No description
+npm WARN manjunath No repository field.
+npm WARN manjunath No README data
+npm WARN manjunath No license field.
+
+cmd output: after running npm install typescript:
+------------------
+C:\Users\manjunath\AppData\Roaming\npm\tsc -> C:\Users\manjunath\AppData\Roaming\npm\node_modules\typescript\bin\tsc
+C:\Users\manjunath\AppData\Roaming\npm\tsserver -> C:\Users\manjunath\AppData\Roaming\npm\node_modules\typescript\bin\tsserver
+C:\Users\manjunath\AppData\Roaming\npm
+`-- typescript@3.4.3
+
+on mac/linux: if there is permission issue. use sudo in front of npm cmd.
+
+
+
+	
+	
