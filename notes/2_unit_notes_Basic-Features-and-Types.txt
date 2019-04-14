@@ -1,0 +1,203 @@
+Basic Features and Types: 
+===================================
+
+
+.ts is the extention for typescript code.
+
+even if you dont know typescript and know only javascript syntax (even new sytax) that will work fine on typescript, it will leverage javascript well.
+typescript is super set it encompasses javascript features as well a typescript feature. like arrow function =>
+
+
+----
+// below code is example of using arrow function => . And, this is javascript feature (and not of typescript feature). But all browser may not support this.
+var fn = () => 'response';
+
+// below code equavlant version of above single line code.
+
+var fn = function() {
+    return 'response';
+}
+
+------
+to compile .ts file
+E:\my-github\TypeScript\typescript-basics> tsc hello-world.ts
+
+var fn = () => 'response';
+
+after running above code with new feature of javascript, typescript compiler creates a '.js' files and it contains a converted code into old version of javascript
+
+var fn = function () { return 'response'; };
+
+here we will not get into more details of javascript, because it is typescript course.
+But we need to know that typescript transpiler is converting into javascript code which more universal and more standard, so that more browsers understands.
+
+------
+
+what is Type declaration ?
+
+var a;
+
+a =10;
+a=true;
+a={};
+
+above all code is valid javascript syntax. and javascript doesnt care typing, any value can assigned to any variable.
+But now, what if you want typing. Like 'a' is number and other type value should not be allowed.
+
+>> var a: number;
+
+so now above code will not allow anything other than number. So, Type declaration is possible in TypeScript.
+This syntax are also called has Post-fix Declaration. 
+Where is in java and C, you first declare the type and then variable name, this called as pre-fix declaration.
+
+a = 10; //is fine
+
+a = true; // is not fine, when compiled it throws error - "Type 'true' is not assignable to type 'number'."
+
+Tip:
+you can mouse over on 'a = true' on editor to display the error.
+
+----
+
+Below are valid types in typescript:
+
+var a: number;
+var b: boolean;
+var s: string;
+
+a =10;
+b = true;
+s = 'Manju'
+
+So, for other primitive types we can do same thing.
+
+We can for custom Types and classes also.
+
+Arrays and tuples:
+--------------------------
+
+other Types in javascript is:
+1. undefined 
+2. null
+
+undefined and null are both primitive data types with one valid value each: undefined and null respectively.
+
+var foo = undefined;
+
+And,
+
+var foo: undefined;
+in this case variable foo can only take value that is undefined. 
+And, same thing with null also.
+
+so we wont much use undefined and null. Just we should know that they are there.
+
+Arrays:
+---------
+
+var myArr = [1,2,3];
+the above sytax is in javascript
+
+But now if we want to declare and array of type number only then it is possible in TypeScript
+
+var myArr : number[];
+myArr = [];
+myArr = [1,2];
+
+below are not valid in TypeScript
+
+myArr = ['str'];
+myArr = 3;
+
+push:
+-----
+
+myArr.push(1) //possible
+
+myArr.push('man') // not possible becasue you can't push string into a array of type number.
+
+pop:
+----
+
+a = myArr.pop() // possible
+
+b = myArr.pop() // not possible, becasue 'b' variable is of type boolean
+
+so we use array for other primitive types and even for custom types also. And TypeScript will do Type checking for you.
+
+tuple:
+--------
+
+In javascript, array is flexible
+var myArr = [1, 'Man', true];
+javascript allows mutiple types in an array
+
+Now what if we want in TypeScript to support multiple types in an array. This is possible using 'tuple'
+
+var myArr : [number, boolean];
+myArr = [1,true];
+
+here it says my first element is number and second one is boolean.
+
+Note:
+For array declaration, you specify the data type before the [].
+For tuple declaration, the data types are specified like elements inside the [].
+
+myArr = [100, false]; // possible
+
+myArr = [1]; // not possible 
+
+here we need to specify values as it is declared in array with it's size, here size is 2.
+Tecnically, it not an array it is tuple. 
+
+How to compile (.ts) and run (.js)file:
+1. command to transpile - >>tsc array-tuples.ts
+2. to run .js file - open command promt >> node array-tuples.js
+
+
+-------
+
+Type erasure and error behavior:
+===================================
+
+we learn:
+	- understanding type erasure
+	- Examining typeScript comilation error behavior
+	
+----
+var a;
+var b;
+var s;
+a = 10;
+b = true;
+s = 'Manju';
+---
+
+in above code, which is generated one by transpiler, but it has removed the types when it rendered into a .js file.
+So, type checking happens in development time, not at run time.
+So this helps in checking for correctness of code before it gone run in the browser.
+
+now,
+
+var a : number;
+a = 10;
+
+now,
+a=true;
+
+here, TypeScript throws error while compiling but still it generates .js file. why ?
+here javascript is loosely coupled for types. But TypeScript anyway transpiles the code to .js file with error because that sytax in javascript is valid.
+
+this is different from other compliers. Other compilers will stop if it finds compilation error. But TypeScript is different here, because its purpose is different, it has to generate javascript code.
+ 
+
+Typing with functions:
+============================
+
+refer '3_Typing-with-function.ts' file for notes and examples
+
+Implicit Typing:
+=================
+
+
+ 

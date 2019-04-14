@@ -50,7 +50,7 @@ typescript = javascript + type
 
 there is concept of Typing in TypeScript - this helps in type checking at compile time.
 
-problem here is javascript is evolving continuously - like keyword and arrow function etc... 
+problem here is javascript is evolving continuously - 'let' keyword and arrow function etc... 
 the problem is now since new feature added to javascript, we cant confidently provide those new feature because on latest version web browser it will work, 
 but what about client who are still using old web browser, your code will break.
 
@@ -105,6 +105,20 @@ C:\Users\manjunath\AppData\Roaming\npm
 
 Note:
 on mac/linux: if there is permission issue. use 'sudo' in front of npm cmd.
+
+
+----------------
+
+
+
+
+
+
+
+
+
+
+
 
 
 
