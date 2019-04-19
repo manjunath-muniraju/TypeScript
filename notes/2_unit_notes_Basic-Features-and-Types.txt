@@ -199,5 +199,109 @@ refer '3_Typing-with-function.ts' file for notes and examples
 Implicit Typing:
 =================
 
+1. Implicit typing with variable declaration:
+-----------------------------------------------
+
+var a = 10;
+var b = true;
+var s = 'Hello';
+
+a = true; // here TypeScript compiler complaints that 'a' variable can't take boolean value
+// Type 'true' is not assignable to type 'number'.
+
+Note: 
+If you don't explicitly declare a variable type, but you assign a value with the declaration, TypeScript implicitly assumes the type from the value being assigned.
+
+2. Implicit typing with function call:
+------------------------------------------
+
+function greet() : String {
+    return 'Good Morning'
+}
+
+var greeting = greet();
+
+Note:
+In Visual Studio Code, you can hover your mouse over a variable to see what type TypeScript thinks it is.
+
+Now, even if we remove return type in method signature, it will still consider return type as String.
+
+function greet1() {
+    return 'Good Morning'
+}
+
+var greeting2 = greet1();
+
+
+Now, in another scenario
+
+function greet3() {
+    return 'Good Morning'
+}
+
+var greeting3;
+greeting3 = greet3();
+greeting3 = 10;
+
+// hovering on greeting3 variable on visual studio code gives - 'var greeting3: any'
+
+// here the assignment is not in single line for variable greeting3, now it takes as 'any' type. Now, assigning string or number is fine for greeting3 variable.
+
+So, implicit type casting works if the assignment is done in same line and it wont work if assignment is done in different line.
+
+Same thing will apply for variable also,
+var a;
+a = 10;
+a = true;
+
+here 'a' vatiable is of 'any' type.
+
+
+Any and union types:
+=========================
+
+Topics:
+1. The 'any' type
+2. union types
+
+By default, if type is not declared it will be of type 'any'.
+ var a: any; 
+ is equavlant to 
+ var a;
+ 
+ so, if you declare type as 'any', that is, it means you are telling TypeScript that do not do type checking for that variable.
+ 
+var a : any;
+
+a = 20;
+a = true;
+a = 'Manju'
+
+So here TypeScript will not complain. It will ignore type checking for varaiable 'a'.
+
+There is another feature in TypeScript, a varibale can take a given set of type. This is called union type.
+Example, if you want a variable to take only number or boolean.
+
+var a : number | boolean;
+a = 10;
+a = true;
+now, if we assgin, a = 'manju', TypeScript will complain.
+Here, we can limit number of types a variable can take.
+
+We can do union for many types also:
+var a : number | boolean | string;
+
+Note:
+So 'any' type is loosely coupled, it can take any type.
+So if there is case where the type unpredectable use 'any' type.
+
+
+
+
 
  
+
+
+
+
+

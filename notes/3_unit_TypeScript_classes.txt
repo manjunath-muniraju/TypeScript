@@ -1,0 +1,562 @@
+TypeScript classes:
+=====================
+
+In this topic we will see oops concepts of TypeScript like classes, interfaces, inheritence, polymorphism etc.
+
+class Person {
+    firstName;
+    lastName;
+}
+
+var aPerson = new Person();
+
+console.log('Before assignment for firstName is : ' + aPerson.firstName);
+console.log(aPerson); // to print objects itself
+
+console.log();
+
+aPerson.firstName = 'Manjunath';
+console.log('After assignment for firstName is : ' + aPerson.firstName);
+console.log(aPerson);
+
+
+Type declartion can be done to class too.
+--------------------------------------------
+we can tell a variable can contain only an instance of type class/Person.
+
+
+var aPerson : Person = new Person();
+// anyway in this case aPerson variable will be of type Person only by default becasue initialzation is done in same line.
+
+we can restrict type for member variable as well.
+
+class Person {
+    firstName : string;
+    lastName : string;
+}
+
+The js rendered out of above TypeScript code is:
+
+--- js start
+var Person = /** @class */ (function () {
+    function Person() {
+    }
+    return Person;
+}());
+var aPerson = new Person();
+--- js end
+
+in the above code see the annotation @class been generated.
+
+Note:
+There is no class concept in native Javascript.
+javascript rendered contains function for person class.
+so we to figure out how to create classes only using function and prototypes which are native of javascript.
+Javascript has only functions, prototypes and closures.
+
+Behind the scence what is happening is good old javascript genetation from TypeScript.
+
+
+Methods and Constructors:
+================================
+
+class PersonNew {
+    firstName : string;
+    lastName : string;
+
+    getFullName() {
+        // here just 'firstName + lastName', will not work, you have to use 'this' keyword
+        return this.firstName +  ' ' + this.lastName;
+    }
+}
+
+var oPersonNew = new PersonNew();
+oPersonNew.firstName = 'Manjunath';
+oPersonNew.lastName = 'Muniraju';
+
+console.log(oPersonNew.getFullName());
+
+
+Next, we have special method called Constructor:
+------------------------------------------------
+
+in other languages, class name constructor name will be same.
+But in TypeScript(but actaually in Javascript), constructor is special function with name constructor.
+
+ex: 
+constructor() {
+}
+
+--- ts
+class PersonNew {
+    firstName : string;
+    lastName : string;
+
+    constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+
+    }
+
+    getFullName() {
+        // here just 'firstName + lastName', will not work, you have to use 'this' keyword
+        return this.firstName +  ' ' + this.lastName;
+    }
+}
+
+var oPersonNew = new PersonNew('Manjunath','Muniraju');
+
+console.log(oPersonNew.getFullName());
+-- ts
+
+In the above code, there is only one constructor ?
+In TypeScript, there can be only one constructor, multiple constructor are not allowed. In other words, constructor overloading is not possible in TypeScript.
+
+
+Inheritance and Polymorphism :
+================================
+
+class concepts are coming in latest ES version. But not universally avaialable, so it is safe to use via TypeScript.
+
+--- JS start
+class Person1 {
+    firstName : string;
+    lastName : string;
+
+    greet() {
+        console.log('Hey there');
+    }
+}
+
+class Programmer extends Person1 {
+
+}
+
+var aProgrammer = new Programmer();
+aProgrammer.greet();
+
+--- JS End
+
+Overridding:
+-----------
+
+--- JS start
+ class Person1 {
+    firstName : string;
+    lastName : string;
+
+    greet() {
+        console.log('Hey there');
+    }
+}
+
+class Programmer extends Person1 {
+    greet() {
+        console.log('greet overridden');
+    }
+}
+
+var aProgrammer = new Programmer();
+aProgrammer.greet();
+
+--- JS End
+
+
+Super keyword:
+----------
+
+--- JS Start
+class Person1 {
+    firstName : string;
+    lastName : string;
+
+    greet() {
+        console.log('Hey there');
+    }
+}
+
+class Programmer extends Person1 {
+    greet() {
+        console.log('greet overridden');
+    }
+
+    callGreetOfSuperClass() {
+        super.greet();
+    }
+}
+
+var aProgrammer = new Programmer();
+//aProgrammer.greet();
+aProgrammer.callGreetOfSuperClass();
+
+--- JS End
+
+output: 
+Hey there
+
+Polymorphism:
+---------------
+
+it is the idea, you can have multiple instance of multiple classes refered to using a parent class type when it comes to typing. 
+
+-- JS start
+class Person1 {
+    firstName : string;
+    lastName : string;
+
+    greet() {
+        console.log('Hey there');
+    }
+}
+
+class Programmer extends Person1 {
+    greet() {
+        console.log('greet overridden');
+    }
+
+    callGreetOfSuperClass() {
+        super.greet();
+    }
+}
+
+var aProgrammer : Person1 = new Programmer();
+aProgrammer.greet();
+
+-- JS End
+
+output:
+greet overridden
+
+here, type is Person but instance is still of Programmer. So, all the methods that are accessable by person can be accessed in Programmer. But extra methods inside Programmer can't be accessed.
+
+Interfaces:
+============
+
+
+interface Person2 {
+    firstName : string;
+    lastName : string;
+
+    getFullName() : string; // only method signature.
+}
+
+// implementation goes here.
+class Foo implements Person2 {
+    firstName: string;    
+    lastName: string;
+    getFullName(): string {
+        return this.firstName + ' ' + this.lastName;
+    }
+}
+
+Duck Typing:
+=============
+
+-- JS start
+interface Person2 {
+    firstName : string;
+    lastName : string;
+
+    getFullName() : string;
+}
+
+class Foo implements Person2 {
+    firstName: string;    
+    lastName: string;
+    getFullName(): string {
+        return this.firstName + ' ' + this.lastName;
+    }
+}
+
+// this fine, Foo type instance can be assigned to Person2 type
+let aPerson2 : Person2 = new Foo();
+
+//duck typing
+
+// we will create a similar inline object which of type Person2 interface or Foo class
+
+let someObj = {
+    firstName : 'Test',
+    lastName: 'test',
+    getFullName: () => 'Test'
+}
+
+aPerson2 = someObj;
+
+// here, someObj will get assigned to aPerson2 without any issues. This was possible because both the object were similar
+
+// simple to put, which bird makes quak quak sound are Ducks :)
+
+-- JS Ends
+
+Here, if one property misses in someObj, it will fail. So it should match all properties.
+
+what if, if there is extra property in someObj ?
+
+let someObj = {
+    firstName : 'Test',
+    lastName: 'test',
+	foo: 10,				// foo is extra property
+    getFullName: () => 'Test'
+}
+
+Here, it works fine if there is extra property.
+but we can't access foo from aPerson2
+i.e aPerson2.foo is error.
+
+in summary: this helps in dealing with external objects.
+
+
+
+Member Visibility:
+====================
+
+private, public and protected modifiers:
+
+--- JS start
+class Person1 {
+    private firstName : string;
+    private lastName : string;
+
+    greet() {
+        console.log('Hey there');
+    }
+
+    getFullName() {
+        return this.firstName + this.lastName
+        // this is possible becasue we are accessing private members inside the class
+        // so we are encapsulating (securing) few members of the class using private keyword
+        // Here is where getters and setters method comes into picture. Using getters and setters you will provide control on data.
+    }
+}
+
+class Programmer extends Person1 {
+    greet() {
+        console.log('greet overridden');
+    }
+
+    callGreetOfSuperClass() {
+        super.greet();
+    }
+}
+
+var aProgrammer : Person1 = new Programmer();
+aProgrammer.greet();
+aProgrammer.firstName // not accessable becasue firstName is marked as private
+
+-- JS End 
+
+getter:
+
+getFirstName() {
+	return this.firstName;
+}
+
+here, i can't mark setter / getter method as private. we need prrovide access to outside world
+
+setter:
+
+setFirstName(firstName : string) {
+	this.firstName = firstName;
+	// here we can put if condition if we need validate the incoming data before assigning to  private members.
+}
+
+same getter and setters can be done for lastName property.
+
+we can assign value to private members using constructor() apart from setter method.
+
+constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+
+    }
+	
+Here, there is another shortcut,
+
+class Person {
+	constructor(private firstName: string, private lastName: string) {
+
+    }
+}	
+
+Here it does two things:
+1. it tells firstName and lastName are private members of class Person. So we can get rid off declaring private members firstName and lastName.
+2. here, when constructor is called with values, by default value will get assigned to firstName and lastName. So that we can get rid off 'this.firstName = firstName'
+
+Same thing can be done for public members also:
+
+class Person {
+	constructor(public firstName: string, public lastName: string) {
+
+    }
+}	
+
+Protected:
+----------
+
+class Person {
+	constructor(protected firstName: string, protected lastName: string) {
+
+    }
+}
+
+a instance variable with protected modifier, is accessable only with in the class or in its sub-class
+
+class Programmer extends Person {
+    greet() {
+        this.firstName; // this is fine accessable 
+    }
+}
+
+//
+
+var aProgrammer : Person1 = new Programmer('manju', 'm');
+aProgrammer.firstName // this is not possible becasue you are accessing outside of the class and sub-class
+
+
+Readonly modifier:
+=====================
+
+ class Animal {
+    readonly name = 'tiger';
+}
+
+var aAnimal = new Animal()
+console.log(aAnimal.name);
+
+//aAnimal.name = 'lion'
+// this is wrong we can assgin a value to read only variable
+
+class Animal1 {
+    readonly name;
+    
+    constructor(name : string) {
+        this.name = name;
+    }
+}
+
+var aAnimal1 = new Animal1('lion')
+console.log(aAnimal1.name);
+
+// So there are only two ways to assign value to readonly modifiers 
+// 1. while declaring a variable - that is inline assignment
+// 2. through constructors
+
+//Another shortcut for above program
+class Animal2 {
+    constructor(readonly name : string) {
+
+    }
+}
+
+
+ENUM:
+============
+
+
+// enum is used to hold set of values like days of the week. so we have limited option to use which are correct.
+
+enum DaysOfTheWeek {
+    SUN, MON, TUE, WED, THU, FRI, SAT
+}
+
+let day: DaysOfTheWeek; // you are declaring day of type DayOfTheWeek
+
+day = DaysOfTheWeek.MON; 
+// now can assign any one value of DaysOfTheWeek enum to ''day'' variable.
+
+// you can compare two values in enum
+
+if(day === DaysOfTheWeek.MON) {
+    console.log('need to go to work');
+}
+
+//actaully when js is rendered it basically create an array and assign integer value starting from 0.
+
+// but can change that value.
+enum DaysOfTheWeek1 {
+    SUN = 100, MON, TUE, WED, THU, FRI, SAT
+}
+
+// here, SUN will get 100 and MON will get 101 and so on automatically.
+
+
+
+Generics:
+==============
+
+function echo<T>(arg : T) : T {
+    return arg;
+}
+
+let myStr : string = echo(1);
+
+// here, echo function is 'generic function' becuase we have used <T>.
+// now once pass number in echo(1) the same type has to returned becasue we have used T in return type. so myStr variable can't take integer becasue is it declared as string type.
+
+// to fix it
+let myInt : number = echo(1);
+
+// or just
+
+let myInt1 = echo(1);
+// here it assumes the return type is number and it myInt1 will be of type number
+
+//we can apply it for classes as well
+
+class Student {
+    firstName : string;
+    lastName : string;
+
+    constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+
+    }
+
+    getFullName() {
+        // here just 'firstName + lastName', will not work, you have to use 'this' keyword
+        return this.firstName +  ' ' + this.lastName;
+    }
+}
+
+class Admin extends Student {
+
+}
+
+class Manager extends Student {
+
+}
+
+let admin = new Admin('a', 'a');
+let manager = new Manager('a', 'a');
+
+function studentEcho<T>(person: T) : T {
+    return person;
+}
+
+var foo = studentEcho(admin);
+
+// now this is good, it allows anything in T, now how can we restrict the T should be of type Student or sub-class of student only. So that no other types are allowed.
+
+function studentEcho1<T extends Student>(person: T) : T {
+    return person;
+}
+
+var boo = studentEcho1(admin);
+
+// now we have placeholder T and as well as we are restricting to be of one type.
+
+
+
+Modules:
+==========
+
+TypeScript has feature to break your source code into multiple files called modules.
+while building a large scale appliaction using TypeScript it is hard to put everthing in one file.
+we export a classes or interfaces or function from one file and import it into another file.
+So we can treat each file as one module. 
+
+
+
+
