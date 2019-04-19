@@ -554,8 +554,8 @@ Modules:
 
 TypeScript has feature to break your source code into multiple files called modules.
 while building a large scale appliaction using TypeScript it is hard to put everthing in one file.
-we export a classes or interfaces or function from one file and import it into another file.
-So we can treat each file as one module. 
+we export a classes or interfaces or function from one file and import it into another file. this is the concept of modules.
+So we can treat each file as one individual module, have 
 
 
 
