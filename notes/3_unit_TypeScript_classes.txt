@@ -557,6 +557,20 @@ while building a large scale appliaction using TypeScript it is hard to put ever
 we export a classes or interfaces or function from one file and import it into another file. this is the concept of modules.
 So we can treat each file as one individual module, have 
 
+file 1 name is : classes.js 
+export class Person {
+	firstName : string;
+}
+var aperson = new Person();
+aperson.firstName = 'Manju'
+console.log(aperson.firstName);
 
+file 2 name is :person.js
+import {Person} from './classes'; //classes.js
 
+class Admin extends Person {
+
+}
+
+Here when file 2 imports from classes.js, it will execute person and it will executes all the statements in the classes.js file. so in this case console.log() will also get excuted
 

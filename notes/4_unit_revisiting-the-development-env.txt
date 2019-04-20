@@ -1,0 +1,73 @@
+TypeScript compiler arguments:
+====================================
+
+
+>>tsc 3_8_Generics.ts --out output-script.js
+
+the above cmd will create new file called output-script.js and TypeScript code will get transpiled into the new files.
+
+>> tsc 3_8_Generics.ts --out output-script.js --watch
+
+--watch will constantly watches for changes, the moment you save the .ts files it will automatically transplies to .js file on the fly.
+
+>> tsc -help
+
+-help will print out all the options available.
+
+
+
+Using tsconfig json file:
+=================================
+
+>> tsc --init
+
+after running above cmd, it generates tsconfig.json file.
+the file contains some configuration.
+
+the target option lets you configure the JavaScript version of the output.
+Now is contains few default values in config file.
+
+Now, we just run cmd 'tsc'
+
+>> tsc
+
+now tsc cmd will compile all the .ts files under the current working directory using config file.
+
+There are bunch of option in config file which commented out. they are like template, un-comment which ever is required for you.
+
+strict: true
+outDir: './out'
+noEmitOnError: true
+
+
+creating an npm project:
+=================================
+
+
+while typescript project you will be create a node project.
+
+to create node project, cmd is
+
+>> npm init
+
+this will create package.json file. it will create node artifact. we can give it name or version. And, we can even publish to npm repository. 
+
+npm init cmd, will ask lot of question, just type enter and it will take default values.
+
+now is generates package.json
+if you notice in the json there is main = index.js files.
+this index file is starting point for your application. this index file will pull other required resources file to your application.
+now in TypeScript project, the common convention is index.ts file.
+then later this .ts file will get compiled into .js file.
+
+
+we have created two files 'index.js' and 'Person.js'
+
+now we run two cmds to excute the script:
+>> tsc
+>> node .\out\index.js
+
+Now, we can do this two task by configuring in package.json., like
+
+
+
