@@ -1,0 +1,108 @@
+Setting up the project:
+============================
+E:\my-github\TypeScript\typescript-basics\5_unit\github-report>
+here, github-report folder is project folder.
+
+>> npm init 
+to get node project initlized
+
+>> tsc --init
+to get typescrpit configuration
+
+create src folder and update in tsconfig file "rootDir": './src'
+
+create out folder and update in tsconfig file "outDir": "./out",
+
+create index.ts under 'src'
+
+Now to just test thing are working fine:
+put console.log statement in index.ts
+and write start cmd in package.json
+
+Now everything is good. We have bootstrapped the application. Now can start coding it.
+
+
+Installing dependencies:
+============================
+
+- Adding external libraries
+- Adding type definitions
+
+Now if we need to make RestAPI calls:
+httpAPI from nodeJS is one option.
+other one is RequestAPI is nice one. so we will install this.
+
+we will install lodash becasue we need to sort some objects.
+
+>> npm install request lodash --save
+
+earlier we looked at type-definitions for packages installed, we add type for both of these packages.
+
+>> npm install @types/lodash @types/request --save-dev 
+
+
+Creating model classes:
+============================
+
+hit below url to get your API on github:
+
+https://api.github.com/users/manjunath-muniraju
+
+to get repos:
+https://api.github.com/users/manjunath-muniraju/repos
+
+so you will get list of response
+
+Note:
+got it, it's because typescript 2.7.2 included a strict class checking where all properties should be declared in constructor. So to work around that, just add a bang sign (!) like: name!:string;
+
+
+To debug, user other parameters of callback function:
+
+getUserInfo(userName: string) {
+        request.get('https://api.github.com/users/' + userName, (error:any, response: any, body: any) => {
+            console.log(error);
+            console.log(response);
+            console.log(body);
+        })
+    }
+	
+log:
+
+body:
+   'Request forbidden by administrative rules. Please make sure your request has a User-Agent header (http://developer.github.com/v3/#user-agent-required). Check https://developer.github.com for other possible causes.\r\n' }
+
+
+Now, javascript or typescript doesnt support method overlaoding. But is you see request package get() seems to be overloaded. but it is not overloaded, it developer that has done intelligent coding as if there is overloading.
+smart right!
+
+
+Coverting response to model object:
+=======================================
+
+there are many ways we can convert json into object.
+we take the approach of using constructors.
+
+
+Using callbacks and handling repo response:
+===============================================
+
+see project
+
+chaining calls and accepting command line arguments:
+===========================================================
+
+see index.ts in main project.
+
+for command line:
+>> npm start manjunath-muniraju
+
+so, if this was DOM based application we should bundled the js file. but for typescript example this is fine.
+
+
+conclusion:
+===============
+
+we have learnt jsut more than foundation.
+Now are good for Angular or node projects to build.
+

@@ -69,5 +69,52 @@ now we run two cmds to excute the script:
 
 Now, we can do this two task by configuring in package.json., like
 
+"scripts": {
+    "start": "tsc && node out/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+  
+Note:
+there should be no error in .ts files. other npm start will not work and it will start complaining like - npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+
+
+Installing libaries and type definitations:
+============================================
+
+we will see how to install loadash into node module.
+loadash is utility library for javascript, has lot of collections objects related... like array etc
+
+>> npm install lodash --save
+
+--save, will save as dependency in package.json or current project.
+
+import * as _ from 'loadash';
+
+here _ is aslias name. so _ is used esp. for lodash
+
+now, here we cant use auto complete in editor. Becasue after package installation it gets only the .js files but not the .ts files. So, editor get auto complete details from .ts file.
+So, either the vendor has to provide typescript version of the .js files. Or we can just use the type details (like doc, just declation details) by.,
+
+npm install lodash-type-definiation
+so all this type defination are avialable under @types/<package-name>
+
+>> npm install @types/lodash --save-dev
+
+--save-dev, tell that this dependency is only for developement. and it will not be bundled with the final output.
+
+now you will get all type definiation details in the editor to use.
+
+-- TS Start
+import * as _ from 'lodash';
+
+//loadasg sample
+
+var array = [1,2,3,4,5];
+console.log(_.reverse(array));
+
+-- TS End
+
+>> npm start
+
 
 
