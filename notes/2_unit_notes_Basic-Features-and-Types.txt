@@ -194,7 +194,7 @@ this is different from other compliers. Other compilers will stop if it finds co
 Typing with functions:
 ============================
 
-refer '3_Typing-with-function.ts' file for notes and examples
+refer '2_3_Typing-with-function.ts' file for notes and examples
 
 Implicit Typing:
 =================
