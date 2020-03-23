@@ -123,7 +123,7 @@ a = myArr.pop() // possible
 
 b = myArr.pop() // not possible, becasue 'b' variable is of type boolean
 
-so we use array for other primitive types and even for custom types also. And TypeScript will do Type checking for you.
+so we use array for other primitive types and even for custom types also. And ***TypeScript will do Type checking for you***.
 
 tuple:
 --------
@@ -206,7 +206,7 @@ var a = 10;
 var b = true;
 var s = 'Hello';
 
-a = true; // here TypeScript compiler complaints that 'a' variable can't take boolean value
+a = true; // here TypeScript compiler complains that 'a' variable can't take boolean value
 // Type 'true' is not assignable to type 'number'.
 
 Note: 

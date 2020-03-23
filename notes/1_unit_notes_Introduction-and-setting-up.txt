@@ -73,11 +73,21 @@ Setting up TypeScript:
 	1. to transpile TypeScript code into JavaScript code. 
 	2. To run the javascript which is converted - so nodeJS does two things for us.
 3. To install the TypeScript Compiler - Typescript is like node module (or node package).  Use npm cmd to install typescript compiler. cmd is 'npm install <package-name>'
-	
->>node -v
 
->>npm -v
-npm is package manager for node. This comes with node installation.  
+Install Visual Studio Code:
+Head to code.visualstudio.com and install. 
+
+Install NodeJS:
+Go to nodejs.org and install node js.
+To make sure node is installed use command 
+/> node -v
+V9.3.0
+
+/> npm -v
+5.5.1
+
+Note: 
+NPM is package manager for node. This comes with node installation.
 
 >>npm install typescript 
 this will install the typescript in the current working directory
