@@ -37,10 +37,10 @@ There are bunch of option in config file which commented out. they are like temp
 
 strict: true
 outDir: './out'
-noEmitOnError: true
+noEmitOnError: true // js will not generate if there is any error.
 
 
-creating an npm project:
+creating an npm (node) project:
 =================================
 
 
@@ -52,7 +52,7 @@ to create node project, cmd is
 
 this will create package.json file. it will create node artifact. we can give it name or version. And, we can even publish to npm repository. 
 
-npm init cmd, will ask lot of question, just type enter and it will take default values.
+npm init cmd, will ask lot of question, just hit enter and it will take default values.
 
 now is generates package.json
 if you notice in the json there is main = index.js files.
@@ -75,7 +75,7 @@ Now, we can do this two task by configuring in package.json., like
   }
   
 Note:
-there should be no error in .ts files. other npm start will not work and it will start complaining like - npm WARN Local package.json exists, but node_modules missing, did you mean to install?
+there should be no error in .ts files. otherwise npm start will not work and it will start complaining like - npm WARN Local package.json exists, but node_modules missing, did you mean to install?
 
 
 Installing libaries and type definitations:

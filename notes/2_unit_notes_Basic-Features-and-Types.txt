@@ -151,6 +151,7 @@ here we need to specify values as it is declared in array with it's size, here s
 Tecnically, it not an array it is tuple. 
 
 How to compile (.ts) and run (.js)file:
+==============================================
 1. command to transpile - >>tsc array-tuples.ts
 2. to run .js file - open command promt >> node array-tuples.js
 

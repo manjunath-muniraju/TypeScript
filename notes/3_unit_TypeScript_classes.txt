@@ -425,7 +425,7 @@ var aAnimal = new Animal()
 console.log(aAnimal.name);
 
 //aAnimal.name = 'lion'
-// this is wrong we can assgin a value to read only variable
+// this is wrong we can't assgin a value to read only variable
 
 class Animal1 {
     readonly name;
@@ -537,7 +537,9 @@ function studentEcho<T>(person: T) : T {
 
 var foo = studentEcho(admin);
 
-// now this is good, it allows anything in T, now how can we restrict the T should be of type Student or sub-class of student only. So that no other types are allowed.
+// now this is good, it allows anything in T, 
+
+Now how can we restrict the T should be of type Student or sub-class of student only. So that no other types are allowed.
 
 function studentEcho1<T extends Student>(person: T) : T {
     return person;
